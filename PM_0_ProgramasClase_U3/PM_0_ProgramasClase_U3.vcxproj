@@ -26,6 +26,11 @@
     <MASM Include="P1_mensajeEmerjente.asm" />
     <MASM Include="P2_respMsjEmergente.asm" />
     <MASM Include="P3_mensajeEspera.asm" />
+    <MASM Include="P4_numerosAleatorios.asm" />
+    <MASM Include="P5_numerosAleatorios_p2.asm" />
+    <MASM Include="P6_Delay.asm" />
+    <MASM Include="P7_EjemploSumaConProcs.asm" />
+    <MASM Include="PT1U3_Random_5_al_10.asm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -103,7 +108,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Irvine</AdditionalLibraryDirectories>
-      <EntryPointSymbol>main2</EntryPointSymbol>
+      <EntryPointSymbol>maint1</EntryPointSymbol>
       <ImportLibrary>C:\Irvine</ImportLibrary>
     </Link>
     <MASM>
