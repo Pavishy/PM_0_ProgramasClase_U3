@@ -13,5 +13,6 @@
     <MASM Include="PT1U3_Random_5_al_10.asm" />
     <MASM Include="P6_Delay.asm" />
     <MASM Include="P7_EjemploSumaConProcs.asm" />
+    <MASM Include="PT1U3_Random_N_al_M.asm" />
   </ItemGroup>
 </Project>

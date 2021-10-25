@@ -1,16 +1,8 @@
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/23/21 11:54:59
-							     Page 1 - 1
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/24/21 20:29:26
+PT1U3_Random_N_al_M.asm					     Page 1 - 1
 
 
-				TITLE x
-
-				;DESCRPICIÓN 
-				;Objetivo: Archivo de Ejemplo
-				; Autore(s):
-				; Semestre: 8vo Semestre ISC 
-				;FIN DESCRIPCIÓN
-
-				INCLUDE Irvine32.inc  
+				INCLUDE Irvine32.inc
 			      C ; Include file for Irvine32.lib             (Irvine32.inc)
 			      C 
 			      C ;OPTION CASEMAP:NONE		; optional: make identifiers case-sensitive
@@ -29,50 +21,46 @@ Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/23/21 11:54:59
 			      C .LIST
 			      C 
 
- = 00000005			j equ 5
- = 0000000A			k equ 10
- = 0000000A			n =10
-
  00000000			.data
- 00000000  0000000A [		arrayd sdword n dup(?)
-	    00000000
-	   ]
 
  00000000			.code
+ 00000000			    menu PROC
+ 00000000  E8 00000000 E	        call Clrscr
+ 00000005  B8 00000005		        mov eax, 5
+ 0000000A  BB 0000000A		        mov ebx, 10
+ 0000000F  B9 00000014		        mov ecx, 20 ;lim
 
- 00000000			maint1 proc
+ 00000014			        L1:
+ 00000014  50			            push eax            ; doesn't change range
+ 00000015  53			            push ebx
 
- 00000000  E8 00000000 E	call randomize 
- 00000005  B9 0000000A		mov ecx,n
- 0000000A  BE 00000000		mov esi,0
+ 00000016  E8 00000009		            call BetterRandomRange
 
- 0000000F			L1:          
- 0000000F  B8 0000000F		   mov eax,k+j
- 00000014  E8 00000000 E	   call randomrange
- 00000019  83 E8 05		   sub eax, j
- 0000001C  89 04 B5		   mov arrayd[esi*4],eax
-	   00000000 R
- 00000023  46			   inc esi
- 00000024  E2 E9		   loop L1
+ 0000001B  5B			            pop ebx
+ 0000001C  58			            pop eax
+				            ;call writedec
+ 0000001D  E2 F5		        Loop L1
 
- 00000026  B9 0000000A		   mov ecx,n
- 0000002B  BE 00000000		   mov esi,0
+ 0000001F  E8 00000000 E	        call WaitMsg
 
- 00000030			L2:
- 00000030  8B 04 B5		   mov eax,arrayd[esi*4]
-	   00000000 R
- 00000037  E8 00000000 E	   call writeInt
- 0000003C  B0 20		   mov al,20h
- 0000003E  E8 00000000 E	   call writechar
- 00000043  46			    inc esi
- 00000044  E2 EA		    loop L2
 
-				exit
+ 00000024			    BetterRandomRange:
+ 00000024  2B D8		        sub ebx, eax        ;mov 400 to ebx
+ 00000026  93			        xchg ebx, eax        ;random works with eax
+ 00000027  E8 00000000 E	        call RandomRange    ; generate random int
+ 0000002C  F7 DB		        neg ebx              
+ 0000002E  2B C3		        sub eax, ebx        ;sub 300 from eax to define range
+ 00000030  E8 00000000 E	        call WriteInt        ; write signed decimal
+ 00000035  E8 00000000 E	        call Crlf
+ 0000003A  C3			        ret
+				   
 
- 0000004D			maint1 endp
-				end maint1
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/23/21 11:54:59
-							     Symbols 2 - 1
+				    exit
+
+ 00000042			menu endp
+				end menu
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/24/21 20:29:26
+PT1U3_Random_N_al_M.asm					     Symbols 2 - 1
 
 
 
@@ -165,8 +153,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 00000028 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 0000004D Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000042 Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -273,9 +261,9 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-maint1 . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000004D Public STDCALL
-  L1 . . . . . . . . . . . . . .	L Near	 0000000F _TEXT	
-  L2 . . . . . . . . . . . . . .	L Near	 00000030 _TEXT	
+menu . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000042 Public STDCALL
+  L1 . . . . . . . . . . . . . .	L Near	 00000014 _TEXT	
+  BetterRandomRange  . . . . . .	L Near	 00000024 _TEXT	
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
@@ -494,7 +482,6 @@ VK_UP  . . . . . . . . . . . . .	Number	 00000026h
 WINDOW_BUFFER_SIZE_EVENT . . . .	Number	 00000004h   
 WriteConsoleOutputCharacter  . .	Text   	 WriteConsoleOutputCharacterA
 WriteConsole . . . . . . . . . .	Text   	 WriteConsoleA
-arrayd . . . . . . . . . . . . .	DWord	 00000000 _DATA	
 black  . . . . . . . . . . . . .	Number	 00000000h   
 blue . . . . . . . . . . . . . .	Number	 00000001h   
 brown  . . . . . . . . . . . . .	Number	 00000006h   
@@ -502,8 +489,6 @@ cyan . . . . . . . . . . . . . .	Number	 00000003h
 exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
 gray . . . . . . . . . . . . . .	Number	 00000008h   
 green  . . . . . . . . . . . . .	Number	 00000002h   
-j  . . . . . . . . . . . . . . .	Number	 00000005h   
-k  . . . . . . . . . . . . . . .	Number	 0000000Ah   
 lightBlue  . . . . . . . . . . .	Number	 00000009h   
 lightCyan  . . . . . . . . . . .	Number	 0000000Bh   
 lightGray  . . . . . . . . . . .	Number	 00000007h   
@@ -511,7 +496,6 @@ lightGreen . . . . . . . . . . .	Number	 0000000Ah
 lightMagenta . . . . . . . . . .	Number	 0000000Dh   
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
-n  . . . . . . . . . . . . . . .	Number	 0000000Ah   
 red  . . . . . . . . . . . . . .	Number	 00000004h   
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA

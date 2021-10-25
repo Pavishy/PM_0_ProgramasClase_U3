@@ -31,6 +31,7 @@
     <MASM Include="P6_Delay.asm" />
     <MASM Include="P7_EjemploSumaConProcs.asm" />
     <MASM Include="PT1U3_Random_5_al_10.asm" />
+    <MASM Include="PT1U3_Random_N_al_M.asm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -108,7 +109,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Irvine</AdditionalLibraryDirectories>
-      <EntryPointSymbol>maint1</EntryPointSymbol>
+      <EntryPointSymbol>menu</EntryPointSymbol>
       <ImportLibrary>C:\Irvine</ImportLibrary>
     </Link>
     <MASM>
