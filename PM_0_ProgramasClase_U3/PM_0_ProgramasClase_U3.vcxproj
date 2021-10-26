@@ -30,8 +30,13 @@
     <MASM Include="P5_numerosAleatorios_p2.asm" />
     <MASM Include="P6_Delay.asm" />
     <MASM Include="P7_EjemploSumaConProcs.asm" />
+    <MASM Include="P8_Macro_ImpPantalla.asm" />
+    <MASM Include="P9_UsoLibMacros.asm" />
     <MASM Include="PT1U3_Random_5_al_10.asm" />
     <MASM Include="PT1U3_Random_N_al_M.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MACROS.inc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -109,7 +114,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Irvine</AdditionalLibraryDirectories>
-      <EntryPointSymbol>menu</EntryPointSymbol>
+      <EntryPointSymbol>main9</EntryPointSymbol>
       <ImportLibrary>C:\Irvine</ImportLibrary>
     </Link>
     <MASM>

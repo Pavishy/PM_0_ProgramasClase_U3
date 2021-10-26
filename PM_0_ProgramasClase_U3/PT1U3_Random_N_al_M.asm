@@ -32,7 +32,7 @@ INCLUDE Irvine32.inc
 
 
     BetterRandomRange:
-        sub ebx, eax        ;mov 400 a ebx
+        sub ebx, eax        ;mov 20 a ebx
         xchg ebx, eax        ;random funciona con eax
         call RandomRange    ; genera el random como entero
         neg ebx              

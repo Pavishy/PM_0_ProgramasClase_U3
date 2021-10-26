@@ -14,5 +14,10 @@
     <MASM Include="P6_Delay.asm" />
     <MASM Include="P7_EjemploSumaConProcs.asm" />
     <MASM Include="PT1U3_Random_N_al_M.asm" />
+    <MASM Include="P8_Macro_ImpPantalla.asm" />
+    <MASM Include="P9_UsoLibMacros.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MACROS.inc" />
   </ItemGroup>
 </Project>

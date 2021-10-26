@@ -1,6 +1,14 @@
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/24/21 20:29:26
-PT1U3_Random_N_al_M.asm					     Page 1 - 1
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/26/21 17:21:33
+"ANDOMRANGE 5 a 10 con limite de 2			     Page 1 - 1
 
+
+				TITLE ANDOMRANGE 5 a 10 con limite de 20
+
+				;DESCRPICIÓN 
+				;Objetivo: R
+				; Autore(s):
+				; Semestre: 8vo Semestre ISC 
+				;FIN DESCRIPCIÓN
 
 				INCLUDE Irvine32.inc
 			      C ; Include file for Irvine32.lib             (Irvine32.inc)
@@ -28,7 +36,7 @@ PT1U3_Random_N_al_M.asm					     Page 1 - 1
  00000000  E8 00000000 E	        call Clrscr
  00000005  B8 00000005		        mov eax, 5
  0000000A  BB 0000000A		        mov ebx, 10
- 0000000F  B9 00000014		        mov ecx, 20 ;lim
+ 0000000F  B9 00000014		        mov ecx, 20 ;limite
 
  00000014			        L1:
  00000014  50			            push eax            ; doesn't change range
@@ -38,19 +46,19 @@ PT1U3_Random_N_al_M.asm					     Page 1 - 1
 
  0000001B  5B			            pop ebx
  0000001C  58			            pop eax
-				            ;call writedec
+				            
  0000001D  E2 F5		        Loop L1
 
  0000001F  E8 00000000 E	        call WaitMsg
 
 
  00000024			    BetterRandomRange:
- 00000024  2B D8		        sub ebx, eax        ;mov 400 to ebx
- 00000026  93			        xchg ebx, eax        ;random works with eax
- 00000027  E8 00000000 E	        call RandomRange    ; generate random int
+ 00000024  2B D8		        sub ebx, eax        ;mov 20 a ebx
+ 00000026  93			        xchg ebx, eax        ;random funciona con eax
+ 00000027  E8 00000000 E	        call RandomRange    ; genera el random como entero
  0000002C  F7 DB		        neg ebx              
- 0000002E  2B C3		        sub eax, ebx        ;sub 300 from eax to define range
- 00000030  E8 00000000 E	        call WriteInt        ; write signed decimal
+ 0000002E  2B C3		        sub eax, ebx        ;sub 5 desde eax a definir el rango
+ 00000030  E8 00000000 E	        call WriteInt        ; escribir con signo si es decimal
  00000035  E8 00000000 E	        call Crlf
  0000003A  C3			        ret
 				   
@@ -59,8 +67,8 @@ PT1U3_Random_N_al_M.asm					     Page 1 - 1
 
  00000042			menu endp
 				end menu
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/24/21 20:29:26
-PT1U3_Random_N_al_M.asm					     Symbols 2 - 1
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/26/21 17:21:33
+"ANDOMRANGE 5 a 10 con limite de 2			     Symbols 2 - 1
 
 
 
