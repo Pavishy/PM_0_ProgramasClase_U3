@@ -23,6 +23,9 @@
   </ItemGroup>
   <ItemGroup>
     <MASM Include="P0_Plantilla.asm" />
+    <MASM Include="P10_SumaMacro_v1.asm" />
+    <MASM Include="P11_SumaMacro_v2.asm" />
+    <MASM Include="P12_SumaMacro_v3.asm" />
     <MASM Include="P1_mensajeEmerjente.asm" />
     <MASM Include="P2_respMsjEmergente.asm" />
     <MASM Include="P3_mensajeEspera.asm" />
@@ -114,7 +117,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Irvine</AdditionalLibraryDirectories>
-      <EntryPointSymbol>main9</EntryPointSymbol>
+      <EntryPointSymbol>main12</EntryPointSymbol>
       <ImportLibrary>C:\Irvine</ImportLibrary>
     </Link>
     <MASM>

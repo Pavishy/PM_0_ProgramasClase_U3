@@ -16,6 +16,9 @@
     <MASM Include="PT1U3_Random_N_al_M.asm" />
     <MASM Include="P8_Macro_ImpPantalla.asm" />
     <MASM Include="P9_UsoLibMacros.asm" />
+    <MASM Include="P10_SumaMacro_v1.asm" />
+    <MASM Include="P11_SumaMacro_v2.asm" />
+    <MASM Include="P12_SumaMacro_v3.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MACROS.inc" />
