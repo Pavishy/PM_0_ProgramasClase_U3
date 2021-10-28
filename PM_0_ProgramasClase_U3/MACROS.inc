@@ -1,69 +1,69 @@
 	ImpPantalla MACRO texto
-		local mensaje					;solo existe cuando se use imppantalla
-		.data
-			mensaje db texto,0
+	local mensaje
+	.data
+		mensaje db texto,0
+	.code
+		push edx  ; guardo en la pila el valor
+		mov edx, offset mensaje
+		call writestring		
+		pop edx   ;recupero el valor original de edx
+ENDM
 
-		.code
-			push edx
-			mov edx, offset mensaje
-			call writestring
-			pop edx
-	ENDM
+ImpPantallaLn MACRO texto
+	local mensaje
+	.data
+		mensaje db texto,0
+	.code
+		push edx  ; guardo en la pila el valor
+		mov edx, offset mensaje
+		call writestring
+		call crlf
+		pop edx   ;recupero el valor original de edx
+ENDM
 
-		ImpPantallaLn MACRO texto
-		local mensaje					;solo existe cuando se use imppantalla
-		.data
-			mensaje db texto,0
+Suma_V1 MACRO  ; los valores que usará el macro son almacenados en registros en el programa principal
+			   ; y estos son consultados / accedidos desde el MACRO
 
-		.code
-			push edx
-			mov edx, offset mensaje
-			call writestring
-			call crlf
-			pop edx
-	ENDM
+	; sumar a los registros ebx, ecx
 
-	Suma_V1 MACRO ; cuando los valores que usara el macro son almacenados en registros en el
-					; programa principal y estos son consultados o accedidos desde el MACRO
+	.data
 
-		; sumar a los registros ebx, ecx
+	.code
 		
-		.data
-		.code
+		add ebx, ecx  ; el valor resultado estará en ebx
 
-		add ebx,ecx; el valor resultado estara en ebx
+ENDM
 
-	ENDM
 
-		Suma_V2 MACRO a,b 
+Suma_V2 MACRO a, b  		
+	
+	; sumar a los registros ebx, ecx que contendrán al valor de a y b respectivamente
+	.data
 
-			; sumar a los registros ebx, ecx que contendran al valor de a y b respectivamente
+	.code
 		
-		.data
-		.code
+		push ecx ; respaldar el valor de ecx 
 
-		push ecx ; respaldar el valor de ecx
+		mov ebx, a
+		mov ecx, b
 
-		mov ebx,a
-		mov ecx,b
+		add ebx, ecx  ; el valor resultado estará en ebx
 
-		add ebx,ecx; el valor resultado estara en ebx
 
-		pop ecx ; recupero el valor original de ecx para que el usuario pueda usarlo sin problema
+		pop ecx ;recupero el valor original de ecx para que el usuario lo pueda seguir utilizando sin problema
+ENDM
 
-	ENDM
 
-			Suma_V3 MACRO a,b 
-		
-		.data
-
+Suma_V3 MACRO a, b  				
+	.data
 		varA dword a
 		varB dword b
 
-		.code
+	.code
+				
+		mov ebx, varA		
 
-		mov ebx,varA
-
-		add ebx,varB; el valor resultado estara en ebx
-
+		add ebx, varB  ; el valor resultado estará en ebx
+	
+ENDM
 	ENDM

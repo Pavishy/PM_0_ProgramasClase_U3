@@ -19,6 +19,8 @@
     <MASM Include="P10_SumaMacro_v1.asm" />
     <MASM Include="P11_SumaMacro_v2.asm" />
     <MASM Include="P12_SumaMacro_v3.asm" />
+    <MASM Include="P13_LimpiaPantalla.asm" />
+    <MASM Include="P14_LeerEscribirCaracter.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MACROS.inc" />
