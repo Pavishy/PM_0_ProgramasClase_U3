@@ -1,13 +1,16 @@
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/27/21 08:57:10
-"ANDOMRANGE 5 a 10 con limite de 2			     Page 1 - 1
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    11/06/21 15:32:05
+<Determinar si la suma de dos números es mayor a un tercer n  Page 1 - 1
 
 
-				TITLE ANDOMRANGE 5 a 10 con limite de 20
+				TITLE Determinar si la suma de dos números es mayor a un tercer número
 
-				;DESCRPICIÓN 
-				;Objetivo: R
+				;DESCRPICIÓN
+				;Objetivo: Explicación
+				;
 				; Autore(s):
-				; Semestre: 8vo Semestre ISC 
+				; Mtro. Alejandro Garcia
+				; Su Nombre.!
+				; Semestre: 8vo Semestre ISC
 				;FIN DESCRIPCIÓN
 
 				INCLUDE Irvine32.inc
@@ -28,49 +31,275 @@ Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/27/21 08:57:10
 			      C .NOLIST
 			      C .LIST
 			      C 
+				INCLUDE MACROS.inc
+			      C ImpPantalla MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring		
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C Imp MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		
+			      C 		mov edx, offset mensaje
+			      C 		call crlf
+			      C 	
+			      C ENDM
+			      C 
+			      C Sumatoria MACRO 
+			      C 	
+			      C 	.data
+			      C 		
+			      C 	.code
+			      C 	   mov edx, 0
+			      C        div ecx
+			      C        add ebx, edx
+			      C 
+			      C ENDM
+			      C 
+			      C ImpPantallaLn MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring
+			      C 		call crlf
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C ImpPantalla_LecturaLn MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring
+			      C 		call readdec
+			      C 		call crlf
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C ImpPantalla_LecturaLn_V2 MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring
+			      C 		call readint
+			      C 		call crlf
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C Suma_V1 MACRO  ; los valores que usará el macro son almacenados en registros en el programa principal
+			      C 			   ; y estos son consultados / accedidos desde el MACRO
+			      C 
+			      C 	; sumar a los registros ebx, ecx
+			      C 
+			      C 	.data
+			      C 
+			      C 	.code
+			      C 		
+			      C 		add ebx, ecx  ; el valor resultado estará en ebx
+			      C 
+			      C ENDM
+			      C 
+			      C 
+			      C Suma_V2 MACRO a, b  		
+			      C 	
+			      C 	; sumar a los registros ebx, ecx que contendrán al valor de a y b respectivamente
+			      C 	.data
+			      C 
+			      C 	.code
+			      C 		
+			      C 		push ecx ; respaldar el valor de ecx 
+			      C 
+			      C 		mov ebx, a
+			      C 		mov ecx, b
+			      C 
+			      C 		add ebx, ecx  ; el valor resultado estará en ebx
+			      C 
+			      C 
+			      C 		pop ecx ;recupero el valor original de ecx para que el usuario lo pueda seguir utilizando sin problema
+			      C ENDM
+			      C 
+			      C 
+			      C Suma_V3 MACRO a, b  				
+			      C 	.data
+			      C 		varA dword a
+			      C 		varB dword b
+			      C 
+			      C 	.code
+			      C 				
+			      C 		mov ebx, varA		
+			      C 
+			      C 		add ebx, varB  ; el valor resultado estará en ebx
+			      C 	
+			      C ENDM
+			      C 
+			      C Salto MACRO  				
+			      C 	.data
+			      C 	.code
+			      C 				
+			      C 		call crlf
+			      C 	
+			      C ENDM
+			      C 
+			      C EscribirTXT MACRO
+			      C 	.data
+			      C 	.code
+			      C 
+			      C 	call writestring
+			      C ENDM
+			      C 
+			      C EscribirNUM MACRO
+			      C 	.data
+			      C 	.code
+			      C 
+			      C 	call writedec
+			      C ENDM
+			      C 
+			      C LeeNTeclado MACRO
+			      C 	.data
+			      C 	.code
+			      C 
+			      C 	call readdec
+			      C ENDM
+			      C 
 
  00000000			.data
+				; Área de Declaración de Variables
+
+ 00000000 00000000		total dword 0
 
  00000000			.code
- 00000000			    menu PROC
- 00000000  E8 00000000 E	        call Clrscr
- 00000005  B8 00000005		        mov eax, 5
- 0000000A  BB 0000000A		        mov ebx, 10
- 0000000F  B9 00000014		        mov ecx, 20 ;limite
 
- 00000014			        L1:
- 00000014  50			            push eax            ; doesn't change range
- 00000015  53			            push ebx
+ 00000000			manhattan PROC
+				;Lógica del Programa
+				  
+				   ImpPantalla_LecturaLn "Dame el total de numeros: "
+ 00000004		     1		.data
+ 00000004 44 61 6D 65 20     1			??0000 db "Dame el total de numeros: ",0
+	   65 6C 20 74 6F
+	   74 61 6C 20 64
+	   65 20 6E 75 6D
+	   65 72 6F 73 3A
+	   20 00
+ 00000000		     1		.code
+ 00000000  52		     1			push edx  ; guardo en la pila el valor
+ 00000001  BA 00000004 R     1			mov edx, offset ??0000
+ 00000006  E8 00000000 E     1			call writestring
+ 0000000B  E8 00000000 E     1			call readdec
+ 00000010  E8 00000000 E     1			call crlf
+ 00000015  5A		     1			pop edx   ;recupero el valor original de edx
+ 00000016  8B C8		   mov ecx, eax
 
- 00000016  E8 00000009		            call BetterRandomRange
+ 00000018			   Ciclo:
+ 00000018  E8 00000000 E	     call crlf
+				     ImpPantalla_LecturaLn "Dame x: "
+ 0000001F		     1		.data
+ 0000001F 44 61 6D 65 20     1			??0001 db "Dame x: ",0
+	   78 3A 20 00
+ 0000001D		     1		.code
+ 0000001D  52		     1			push edx  ; guardo en la pila el valor
+ 0000001E  BA 0000001F R     1			mov edx, offset ??0001
+ 00000023  E8 00000000 E     1			call writestring
+ 00000028  E8 00000000 E     1			call readdec
+ 0000002D  E8 00000000 E     1			call crlf
+ 00000032  5A		     1			pop edx   ;recupero el valor original de edx
+ 00000033  50			     push eax
 
- 0000001B  5B			            pop ebx
- 0000001C  58			            pop eax
-				            
- 0000001D  E2 F5		        Loop L1
+				     ImpPantalla_LecturaLn "Dame y: "
+ 00000028		     1		.data
+ 00000028 44 61 6D 65 20     1			??0002 db "Dame y: ",0
+	   79 3A 20 00
+ 00000034		     1		.code
+ 00000034  52		     1			push edx  ; guardo en la pila el valor
+ 00000035  BA 00000028 R     1			mov edx, offset ??0002
+ 0000003A  E8 00000000 E     1			call writestring
+ 0000003F  E8 00000000 E     1			call readdec
+ 00000044  E8 00000000 E     1			call crlf
+ 00000049  5A		     1			pop edx   ;recupero el valor original de edx
+ 0000004A  8B D8		     mov ebx, eax
+ 0000004C  58			     pop eax
+ 0000004D  2B C3		     sub eax, ebx
 
- 0000001F  E8 00000000 E	        call WaitMsg
+ 0000004F  83 F8 00		     cmp eax, 0
+ 00000052  7D 09		        jge Next
+
+ 00000054  50			    push eax
+ 00000055  B8 00000000		    mov eax, 0
+ 0000005A  5B			    pop ebx
+ 0000005B  2B C3		    sub eax, ebx
+
+ 0000005D			     Next:
+ 0000005D  01 05 00000000 R	        add total, eax
+				       
+ 00000063  E2 B3		   loop Ciclo
+
+				    Salto
+ 00000031		     1		.data
+ 00000065		     1		.code
+ 00000065  E8 00000000 E     1			call crlf
+				   ImpPantalla "El resultado fue "
+ 00000031		     1		.data
+ 00000031 45 6C 20 72 65     1			??0003 db "El resultado fue ",0
+	   73 75 6C 74 61
+	   64 6F 20 66 75
+	   65 20 00
+ 0000006A		     1		.code
+ 0000006A  52		     1			push edx  ; guardo en la pila el valor
+ 0000006B  BA 00000031 R     1			mov edx, offset ??0003
+ 00000070  E8 00000000 E     1			call writestring		
+ 00000075  5A		     1			pop edx   ;recupero el valor original de edx
+ 00000076  A1 00000000 R	   mov eax, total
+				   EscribirNUM
+ 00000043		     1		.data
+ 0000007B		     1		.code
+ 0000007B  E8 00000000 E     1		call writedec
+				   Salto
+ 00000043		     1		.data
+ 00000080		     1		.code
+ 00000080  E8 00000000 E     1			call crlf
+
+				exit
+ 0000008C			manhattan ENDP
+				END manhattan
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    11/06/21 15:32:05
+<Determinar si la suma de dos números es mayor a un tercer n  Symbols 2 - 1
 
 
- 00000024			    BetterRandomRange:
- 00000024  2B D8		        sub ebx, eax        ;mov 20 a ebx
- 00000026  93			        xchg ebx, eax        ;random funciona con eax
- 00000027  E8 00000000 E	        call RandomRange    ; genera el random como entero
- 0000002C  F7 DB		        neg ebx              
- 0000002E  2B C3		        sub eax, ebx        ;sub 5 desde eax a definir el rango
- 00000030  E8 00000000 E	        call WriteInt        ; escribir con signo si es decimal
- 00000035  E8 00000000 E	        call Crlf
- 0000003A  C3			        ret
-				   
-
-				    exit
-
- 00000042			menu endp
-				end menu
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    10/27/21 08:57:10
-"ANDOMRANGE 5 a 10 con limite de 2			     Symbols 2 - 1
 
 
+Macros:
+
+                N a m e                 Type
+
+EscribirNUM  . . . . . . . . . .	Proc
+EscribirTXT  . . . . . . . . . .	Proc
+ImpPantallaLn  . . . . . . . . .	Proc
+ImpPantalla_LecturaLn_V2 . . . .	Proc
+ImpPantalla_LecturaLn  . . . . .	Proc
+ImpPantalla  . . . . . . . . . .	Proc
+Imp  . . . . . . . . . . . . . .	Proc
+LeeNTeclado  . . . . . . . . . .	Proc
+Salto  . . . . . . . . . . . . .	Proc
+Suma_V1  . . . . . . . . . . . .	Proc
+Suma_V2  . . . . . . . . . . . .	Proc
+Suma_V3  . . . . . . . . . . . .	Proc
+Sumatoria  . . . . . . . . . . .	Proc
 
 
 Structures and Unions:
@@ -161,8 +390,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 00000042 Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000043 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000008C Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -269,9 +498,9 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-menu . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000042 Public STDCALL
-  L1 . . . . . . . . . . . . . .	L Near	 00000014 _TEXT	
-  BetterRandomRange  . . . . . .	L Near	 00000024 _TEXT	
+manhattan  . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000008C Public STDCALL
+  Ciclo  . . . . . . . . . . . .	L Near	 00000018 _TEXT	
+  Next . . . . . . . . . . . . .	L Near	 0000005D _TEXT	
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
@@ -281,6 +510,10 @@ Symbols:
 
                 N a m e                 Type     Value    Attr
 
+??0000 . . . . . . . . . . . . .	Byte	 00000004 _DATA	
+??0001 . . . . . . . . . . . . .	Byte	 0000001F _DATA	
+??0002 . . . . . . . . . . . . .	Byte	 00000028 _DATA	
+??0003 . . . . . . . . . . . . .	Byte	 00000031 _DATA	
 @CodeSize  . . . . . . . . . . .	Number	 00000000h   
 @DataSize  . . . . . . . . . . .	Number	 00000000h   
 @Interface . . . . . . . . . . .	Number	 00000003h   
@@ -505,6 +738,7 @@ lightMagenta . . . . . . . . . .	Number	 0000000Dh
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
 red  . . . . . . . . . . . . . .	Number	 00000004h   
+total  . . . . . . . . . . . . .	DWord	 00000000 _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   

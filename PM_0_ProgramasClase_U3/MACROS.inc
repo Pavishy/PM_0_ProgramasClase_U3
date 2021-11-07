@@ -1,4 +1,4 @@
-	ImpPantalla MACRO texto
+ImpPantalla MACRO texto
 	local mensaje
 	.data
 		mensaje db texto,0
@@ -9,6 +9,28 @@
 		pop edx   ;recupero el valor original de edx
 ENDM
 
+Imp MACRO texto
+	local mensaje
+	.data
+		mensaje db texto,0
+	.code
+		
+		mov edx, offset mensaje
+		call crlf
+	
+ENDM
+
+Sumatoria MACRO 
+	
+	.data
+		
+	.code
+	   mov edx, 0
+       div ecx
+       add ebx, edx
+
+ENDM
+
 ImpPantallaLn MACRO texto
 	local mensaje
 	.data
@@ -17,6 +39,32 @@ ImpPantallaLn MACRO texto
 		push edx  ; guardo en la pila el valor
 		mov edx, offset mensaje
 		call writestring
+		call crlf
+		pop edx   ;recupero el valor original de edx
+ENDM
+
+ImpPantalla_LecturaLn MACRO texto
+	local mensaje
+	.data
+		mensaje db texto,0
+	.code
+		push edx  ; guardo en la pila el valor
+		mov edx, offset mensaje
+		call writestring
+		call readdec
+		call crlf
+		pop edx   ;recupero el valor original de edx
+ENDM
+
+ImpPantalla_LecturaLn_V2 MACRO texto
+	local mensaje
+	.data
+		mensaje db texto,0
+	.code
+		push edx  ; guardo en la pila el valor
+		mov edx, offset mensaje
+		call writestring
+		call readint
 		call crlf
 		pop edx   ;recupero el valor original de edx
 ENDM
@@ -66,4 +114,32 @@ Suma_V3 MACRO a, b
 		add ebx, varB  ; el valor resultado estará en ebx
 	
 ENDM
-	ENDM
+
+Salto MACRO  				
+	.data
+	.code
+				
+		call crlf
+	
+ENDM
+
+EscribirTXT MACRO
+	.data
+	.code
+
+	call writestring
+ENDM
+
+EscribirNUM MACRO
+	.data
+	.code
+
+	call writedec
+ENDM
+
+LeeNTeclado MACRO
+	.data
+	.code
+
+	call readdec
+ENDM

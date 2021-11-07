@@ -37,6 +37,27 @@
     <MASM Include="P7_EjemploSumaConProcs.asm" />
     <MASM Include="P8_Macro_ImpPantalla.asm" />
     <MASM Include="P9_UsoLibMacros.asm" />
+    <MASM Include="PPT10_Num_Ingresado_Val_Nega_MAC.asm" />
+    <MASM Include="PPT11_Val_X_N_Cuantos_MAC.asm" />
+    <MASM Include="PPT12_Pares_Impares_Mostrar_MAC.asm" />
+    <MASM Include="PPT13_NPares_MAC.asm" />
+    <MASM Include="PPT14_Manhattan_MAC.asm" />
+    <MASM Include="PPT15_Numbin_a_dec_MAC.asm" />
+    <MASM Include="PPT1_Hoja_Presentacion_MAC.asm" />
+    <MASM Include="PPT2_1_Sum_dob_trip_MAC.asm" />
+    <MASM Include="PPT2_2_Suma_de_Numeros_MAC.asm" />
+    <MASM Include="PPT2_3_Obten_Area _Per_Rec_Base _Altura_MAC.asm" />
+    <MASM Include="PPT2_4_Trabajador_MAC.asm" />
+    <MASM Include="PPT3_1_IMC_MAC.asm" />
+    <MASM Include="PPT3_2_Lectura_Numeros_Mayor_MAC.asm" />
+    <MASM Include="PPT3_3_Matriz_2x2_Det_MAC.asm" />
+    <MASM Include="PPT3_4_Velocidad_Dist_Tiemp_MAC.asm" />
+    <MASM Include="PPT4_Pares_1_N_Usuario_MAC.asm" />
+    <MASM Include="PPT5_Fibonacci_MAC.asm" />
+    <MASM Include="PPT6_Num_Primo_No_MAC.asm" />
+    <MASM Include="PPT7_Sumados_numeros_mayor_MAC.asm" />
+    <MASM Include="PPT8_Tabla de multiplicar_MAC.asm" />
+    <MASM Include="PPT9_Calificaciones_MAC.asm" />
     <MASM Include="PT1U3_Random_5_al_10.asm" />
     <MASM Include="PT1U3_Random_N_al_M.asm" />
   </ItemGroup>
@@ -119,7 +140,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Irvine</AdditionalLibraryDirectories>
-      <EntryPointSymbol>main12</EntryPointSymbol>
+      <EntryPointSymbol>bin</EntryPointSymbol>
       <ImportLibrary>C:\Irvine</ImportLibrary>
     </Link>
     <MASM>
