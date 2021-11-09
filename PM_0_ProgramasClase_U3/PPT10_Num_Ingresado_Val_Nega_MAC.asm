@@ -1,5 +1,6 @@
 TITLE Pedir números hasta que sea ingresado un valor negativo. 
-;Se imprimirá a todos los números conforme son ingresados a excepción del negativo. 
+;Se imprimirá a todos los números conforme son 
+;ingresados a excepción del negativo. 
 
 ;DESCRPICIÓN 
 ;Objetivo: Lectura de números por consola
@@ -34,3 +35,5 @@ INCLUDE MACROS.inc
 
 	valne ENDP
 	END valne
+
+

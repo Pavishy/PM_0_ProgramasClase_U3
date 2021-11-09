@@ -38,7 +38,7 @@ tabla PROC
        mov eax, ecx
        EscribirNUM
        ImpPantalla " = "
-       call readint
+       LeeNTeclado
 
        cmp eax, ebx
          je next
@@ -62,3 +62,4 @@ tabla PROC
 exit
 tabla ENDP
 END tabla
+

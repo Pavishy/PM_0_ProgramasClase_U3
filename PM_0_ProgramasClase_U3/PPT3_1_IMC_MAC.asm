@@ -6,8 +6,6 @@ TITLE Saltos Condicionales
 ; Autore(s):
 ;         Mtro. Alejandro Garcia
 ;          Su Nombre.! 
-;         
-
 ; Semestre: 8vo Semestre ISC 
 ;FIN DESCRIPCIÓN
 
@@ -51,3 +49,5 @@ altura dword ?
     
     ims ENDP
     END ims
+
+

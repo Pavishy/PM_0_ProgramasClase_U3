@@ -16,8 +16,7 @@ INCLUDE MACROS.inc
 ; Área de Declaración de Variables
 
 .code
-	ppimpar PROC	
-		;Lógica del Programa
+	ppimpar PROC
 
 	continuar:
 		
@@ -50,3 +49,5 @@ INCLUDE MACROS.inc
 
 	ppimpar ENDP
 	END ppimpar
+
+

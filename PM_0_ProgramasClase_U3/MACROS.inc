@@ -98,7 +98,8 @@ Suma_V2 MACRO a, b
 		add ebx, ecx  ; el valor resultado estará en ebx
 
 
-		pop ecx ;recupero el valor original de ecx para que el usuario lo pueda seguir utilizando sin problema
+		pop ecx ;recupero el valor original de ecx para que el usuario 
+		;lo pueda seguir utilizando sin problema
 ENDM
 
 

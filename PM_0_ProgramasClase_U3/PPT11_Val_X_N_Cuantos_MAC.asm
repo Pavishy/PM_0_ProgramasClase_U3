@@ -1,4 +1,5 @@
-TITLE Pedir un valor para X y N números e indicar cuantas veces aparece X en los N números. 
+TITLE Pedir un valor para X y N números e indicar 
+;cuantas veces aparece X en los N números. 
 
 ;DESCRPICIÓN 
 ;Objetivo: Lectura de números por consola
@@ -17,14 +18,11 @@ INCLUDE MACROS.inc
 
 count dword 0
 
-
 .code
 
 	mainXN PROC
 	      ImpPantalla_LecturaLn "Dame un numero: "
-
 		  mov ebx, eax
-
 		  ImpPantalla_LecturaLn "Dame el total de numeros: "
 
 		  mov ecx, eax
@@ -53,7 +51,6 @@ count dword 0
 			 ImpPantalla " aparece "
 			 mov eax, count
 			 EscribirNUM
-
 			 ImpPantallaLn " veces."
 
 			exit

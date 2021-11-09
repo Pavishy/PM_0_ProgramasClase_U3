@@ -1,5 +1,6 @@
 TITLE Solicitar N pares de puntos (2 puntos por iteración) 
-;y calcular el punto medio por cada par de puntos. Nota: un punto se encuentra constituido por una coordenada 
+;y calcular el punto medio por cada par de puntos. 
+;Nota: un punto se encuentra constituido por una coordenada 
 ;X y una coordenada Y.
 
 ;DESCRPICIÓN
@@ -35,20 +36,16 @@ paresn PROC
        mov ebx, 2
 
       ImpPantalla_LecturaLn_V2 "Dame x1: "
-
       mov x1, eax
 
       ImpPantalla_LecturaLn_V2 "Dame y1: "
-
       mov y1, eax
       Salto
 
       ImpPantalla_LecturaLn_V2 "Dame x2: "
-
       mov x2, eax
 
       ImpPantalla_LecturaLn_V2 "Dame y2: "
-      
       mov y2, eax
 
       mov eax, x1
@@ -64,17 +61,14 @@ paresn PROC
       mov ebx, eax
 
       ImpPantalla "("
-
       mov eax, x1
       EscribirNUM
 
       ImpPantalla ","
-
       mov eax, ebx
       EscribirNUM
 
       ImpPantalla ")"
-
       Salto
       Salto
 
@@ -87,7 +81,16 @@ paresn PROC
       salir:
       exit
 
-
 exit
 paresn ENDP
 END paresn
+
+
+
+
+
+
+
+
+
+

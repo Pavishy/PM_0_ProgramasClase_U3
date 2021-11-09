@@ -1,4 +1,4 @@
-TITLE Lectura de numero mayor
+TITLE Matriz 2x2
 
 ;DESCRPICIÓN 
 ;Objetivo: Explicación
@@ -30,7 +30,7 @@ aux dword ?
         mov ecx, 4
 
         ciclo:
-            call crlf
+             Salto
              LeeNTeclado
              push eax
              dec ecx

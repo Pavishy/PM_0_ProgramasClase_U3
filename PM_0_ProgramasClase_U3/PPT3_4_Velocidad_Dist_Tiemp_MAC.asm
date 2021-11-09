@@ -27,8 +27,7 @@ INCLUDE MACROS.inc
         mov edx, 0
         div ecx
 
-       ImpPantalla "La velocidad es: "
-        EscribirTXT
+        ImpPantalla "La velocidad es: "
         EscribirNUM
 
         Salto
@@ -38,3 +37,5 @@ INCLUDE MACROS.inc
     
     velocidad ENDP
     END velocidad
+
+

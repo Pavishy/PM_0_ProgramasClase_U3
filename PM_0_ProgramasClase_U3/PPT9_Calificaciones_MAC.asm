@@ -1,8 +1,8 @@
-TITLE Pedir n, ingresar n calificaciones e imprimir si el usuario aprobó o no. Se aprueba con 7.
+TITLE Pedir n, ingresar n calificaciones e imprimir si
+;el usuario aprobó o no. Se aprueba con 7.
 
 ;DESCRPICIÓN
 ;Objetivo: Explicación
-;
 ; Autore(s):
 ; Mtro. Alejandro Garcia
 ; Su Nombre.!
@@ -14,7 +14,6 @@ INCLUDE MACROS.inc
 
 .data
 ; Área de Declaración de Variables
-
 .code
 
 calift PROC
