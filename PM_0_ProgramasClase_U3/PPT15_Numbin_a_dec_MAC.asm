@@ -30,7 +30,7 @@ bin PROC
   mov ecx, sizeof arr
 
 
- EscribirTXT
+ LeerTXT
  mov ecx, eax
  dec ecx
  mov ebx, 1

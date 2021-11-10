@@ -1,13 +1,16 @@
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    11/07/21 17:57:15
-"ANDOMRANGE 5 a 10 con limite de 2			     Page 1 - 1
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    11/09/21 20:14:50
+Numero binario a decima				     Page 1 - 1
 
 
-				TITLE ANDOMRANGE 5 a 10 con limite de 20
+				TITLE Numero binario a decimal
 
-				;DESCRPICIÓN 
-				;Objetivo: R
+				;DESCRPICIÓN
+				;Objetivo: Explicación
+				;
 				; Autore(s):
-				; Semestre: 8vo Semestre ISC 
+				; Mtro. Alejandro Garcia
+				; Su Nombre.!
+				; Semestre: 8vo Semestre ISC
 				;FIN DESCRIPCIÓN
 
 				INCLUDE Irvine32.inc
@@ -28,49 +31,283 @@ Microsoft (R) Macro Assembler Version 14.29.30133.0	    11/07/21 17:57:15
 			      C .NOLIST
 			      C .LIST
 			      C 
+				INCLUDE MACROS.inc
+			      C ImpPantalla MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring		
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C Imp MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		
+			      C 		mov edx, offset mensaje
+			      C 		call crlf
+			      C 	
+			      C ENDM
+			      C 
+			      C Sumatoria MACRO 
+			      C 	
+			      C 	.data
+			      C 		
+			      C 	.code
+			      C 	   mov edx, 0
+			      C        div ecx
+			      C        add ebx, edx
+			      C 
+			      C ENDM
+			      C 
+			      C ImpPantallaLn MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring
+			      C 		call crlf
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C ImpPantalla_LecturaLn MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring
+			      C 		call readdec
+			      C 		call crlf
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C ImpPantalla_LecturaLn_V2 MACRO texto
+			      C 	local mensaje
+			      C 	.data
+			      C 		mensaje db texto,0
+			      C 	.code
+			      C 		push edx  ; guardo en la pila el valor
+			      C 		mov edx, offset mensaje
+			      C 		call writestring
+			      C 		call readint
+			      C 		call crlf
+			      C 		pop edx   ;recupero el valor original de edx
+			      C ENDM
+			      C 
+			      C Suma_V1 MACRO  ; los valores que usará el macro son almacenados en registros en el programa principal
+			      C 			   ; y estos son consultados / accedidos desde el MACRO
+			      C 
+			      C 	; sumar a los registros ebx, ecx
+			      C 
+			      C 	.data
+			      C 
+			      C 	.code
+			      C 		
+			      C 		add ebx, ecx  ; el valor resultado estará en ebx
+			      C 
+			      C ENDM
+			      C 
+			      C 
+			      C Suma_V2 MACRO a, b  		
+			      C 	
+			      C 	; sumar a los registros ebx, ecx que contendrán al valor de a y b respectivamente
+			      C 	.data
+			      C 
+			      C 	.code
+			      C 		
+			      C 		push ecx ; respaldar el valor de ecx 
+			      C 
+			      C 		mov ebx, a
+			      C 		mov ecx, b
+			      C 
+			      C 		add ebx, ecx  ; el valor resultado estará en ebx
+			      C 
+			      C 
+			      C 		pop ecx ;recupero el valor original de ecx para que el usuario 
+			      C 		;lo pueda seguir utilizando sin problema
+			      C ENDM
+			      C 
+			      C 
+			      C Suma_V3 MACRO a, b  				
+			      C 	.data
+			      C 		varA dword a
+			      C 		varB dword b
+			      C 
+			      C 	.code
+			      C 				
+			      C 		mov ebx, varA		
+			      C 
+			      C 		add ebx, varB  ; el valor resultado estará en ebx
+			      C 	
+			      C ENDM
+			      C 
+			      C Salto MACRO  				
+			      C 	.data
+			      C 	.code
+			      C 				
+			      C 		call crlf
+			      C 	
+			      C ENDM
+			      C 
+			      C EscribirTXT MACRO
+			      C 	.data
+			      C 	.code
+			      C 
+			      C 	call writestring
+			      C ENDM
+			      C 
+			      C LeerTXT MACRO
+			      C 	.data
+			      C 	.code
+			      C 
+			      C 	call readstring
+			      C ENDM
+			      C 
+			      C EscribirNUM MACRO
+			      C 	.data
+			      C 	.code
+			      C 
+			      C 	call writedec
+			      C ENDM
+			      C 
+			      C LeeNTeclado MACRO
+			      C 	.data
+			      C 	.code
+			      C 
+			      C 	call readdec
+			      C ENDM
+			      C 
 
  00000000			.data
+				; Área de Declaración de Variables
+ 00000000  00000009 [		arr byte 9 dup(0)
+	    00
+	   ]
+ 00000009 00000000		total dword 0
+ 0000000D 00000001		sec2 dword 1
 
  00000000			.code
- 00000000			    menu PROC
- 00000000  E8 00000000 E	        call Clrscr
- 00000005  B8 00000005		        mov eax, 5
- 0000000A  BB 0000000A		        mov ebx, 10
- 0000000F  B9 00000014		        mov ecx, 20 ;limite
 
- 00000014			        L1:
- 00000014  50			            push eax            ; doesn't change range
- 00000015  53			            push ebx
+ 00000000			bin PROC
 
- 00000016  E8 00000009		            call BetterRandomRange
+				;Lógica del Programa
+				  
+				  ImpPantalla "Dame la longitud maxima: "
+ 00000011		     1		.data
+ 00000011 44 61 6D 65 20     1			??0000 db "Dame la longitud maxima: ",0
+	   6C 61 20 6C 6F
+	   6E 67 69 74 75
+	   64 20 6D 61 78
+	   69 6D 61 3A 20
+	   00
+ 00000000		     1		.code
+ 00000000  52		     1			push edx  ; guardo en la pila el valor
+ 00000001  BA 00000011 R     1			mov edx, offset ??0000
+ 00000006  E8 00000000 E     1			call writestring		
+ 0000000B  5A		     1			pop edx   ;recupero el valor original de edx
 
- 0000001B  5B			            pop ebx
- 0000001C  58			            pop eax
-				            
- 0000001D  E2 F5		        Loop L1
-
- 0000001F  E8 00000000 E	        call WaitMsg
-
-
- 00000024			    BetterRandomRange:
- 00000024  2B D8		        sub ebx, eax        ;mov 20 a ebx
- 00000026  93			        xchg ebx, eax        ;random funciona con eax
- 00000027  E8 00000000 E	        call RandomRange    ; genera el random como entero
- 0000002C  F7 DB		        neg ebx              
- 0000002E  2B C3		        sub eax, ebx        ;sub 5 desde eax a definir el rango
- 00000030  E8 00000000 E	        call WriteInt        ; escribir con signo si es decimal
- 00000035  E8 00000000 E	        call Crlf
- 0000003A  C3			        ret
-				   
-
-				    exit
-
- 00000042			menu endp
-				end menu
-Microsoft (R) Macro Assembler Version 14.29.30133.0	    11/07/21 17:57:15
-"ANDOMRANGE 5 a 10 con limite de 2			     Symbols 2 - 1
+ 0000000C  BA 00000000 R	  mov edx, offset arr
+ 00000011  B9 00000009		  mov ecx, sizeof arr
 
 
+				 LeerTXT
+ 0000002B		     1		.data
+ 00000016		     1		.code
+ 00000016  E8 00000000 E     1		call readstring
+ 0000001B  8B C8		 mov ecx, eax
+ 0000001D  49			 dec ecx
+ 0000001E  BB 00000001		 mov ebx, 1
+				 Salto
+ 0000002B		     1		.data
+ 00000023		     1		.code
+ 00000023  E8 00000000 E     1			call crlf
+
+ 00000028			 ciclo:
+ 00000028  B8 00000000		     mov eax, 0
+ 0000002D  8B F9		     mov edi, ecx
+ 0000002F  8A 81 00000000 R	     mov al,arr[ecx]
+
+ 00000035  0F B6 C0		     movzx eax, al
+ 00000038  83 E8 30		     sub eax, 48
+ 0000003B  50			     push eax
+ 0000003C  A1 0000000D R	     mov eax, sec2
+ 00000041  F7 E3		     mul ebx
+ 00000043  A3 0000000D R	     mov sec2, eax
+
+ 00000048  58			     pop eax
+ 00000049  F7 25 0000000D R	     mul sec2
+ 0000004F  01 05 00000009 R	     add total, eax
+
+ 00000055  8B CF		     mov ecx, edi
+ 00000057  49			     dec ecx
+ 00000058  BB 00000002		     mov ebx,2
+				     
+ 0000005D  83 F9 FF		     cmp ecx,-1
+ 00000060  7F C6		     jg ciclo
+
+				  ImpPantalla "El numero formado es: "
+ 0000002B		     1		.data
+ 0000002B 45 6C 20 6E 75     1			??0001 db "El numero formado es: ",0
+	   6D 65 72 6F 20
+	   66 6F 72 6D 61
+	   64 6F 20 65 73
+	   3A 20 00
+ 00000062		     1		.code
+ 00000062  52		     1			push edx  ; guardo en la pila el valor
+ 00000063  BA 0000002B R     1			mov edx, offset ??0001
+ 00000068  E8 00000000 E     1			call writestring		
+ 0000006D  5A		     1			pop edx   ;recupero el valor original de edx
+
+ 0000006E  A1 00000009 R	  mov eax, total
+				  EscribirNUM
+ 00000042		     1		.data
+ 00000073		     1		.code
+ 00000073  E8 00000000 E     1		call writedec
+				  Salto
+ 00000042		     1		.data
+ 00000078		     1		.code
+ 00000078  E8 00000000 E     1			call crlf
+
+				exit
+ 00000084			bin ENDP
+				END bin
+
+
+
+
+Microsoft (R) Macro Assembler Version 14.29.30133.0	    11/09/21 20:14:50
+Numero binario a decima				     Symbols 2 - 1
+
+
+
+
+Macros:
+
+                N a m e                 Type
+
+EscribirNUM  . . . . . . . . . .	Proc
+EscribirTXT  . . . . . . . . . .	Proc
+ImpPantallaLn  . . . . . . . . .	Proc
+ImpPantalla_LecturaLn_V2 . . . .	Proc
+ImpPantalla_LecturaLn  . . . . .	Proc
+ImpPantalla  . . . . . . . . . .	Proc
+Imp  . . . . . . . . . . . . . .	Proc
+LeeNTeclado  . . . . . . . . . .	Proc
+LeerTXT  . . . . . . . . . . . .	Proc
+Salto  . . . . . . . . . . . . .	Proc
+Suma_V1  . . . . . . . . . . . .	Proc
+Suma_V2  . . . . . . . . . . . .	Proc
+Suma_V3  . . . . . . . . . . . .	Proc
+Sumatoria  . . . . . . . . . . .	Proc
 
 
 Structures and Unions:
@@ -161,8 +398,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 00000042 Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000042 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000084 Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -269,9 +506,8 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-menu . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000042 Public STDCALL
-  L1 . . . . . . . . . . . . . .	L Near	 00000014 _TEXT	
-  BetterRandomRange  . . . . . .	L Near	 00000024 _TEXT	
+bin  . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000084 Public STDCALL
+  ciclo  . . . . . . . . . . . .	L Near	 00000028 _TEXT	
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
@@ -281,6 +517,8 @@ Symbols:
 
                 N a m e                 Type     Value    Attr
 
+??0000 . . . . . . . . . . . . .	Byte	 00000011 _DATA	
+??0001 . . . . . . . . . . . . .	Byte	 0000002B _DATA	
 @CodeSize  . . . . . . . . . . .	Number	 00000000h   
 @DataSize  . . . . . . . . . . .	Number	 00000000h   
 @Interface . . . . . . . . . . .	Number	 00000003h   
@@ -490,6 +728,7 @@ VK_UP  . . . . . . . . . . . . .	Number	 00000026h
 WINDOW_BUFFER_SIZE_EVENT . . . .	Number	 00000004h   
 WriteConsoleOutputCharacter  . .	Text   	 WriteConsoleOutputCharacterA
 WriteConsole . . . . . . . . . .	Text   	 WriteConsoleA
+arr  . . . . . . . . . . . . . .	Byte	 00000000 _DATA	
 black  . . . . . . . . . . . . .	Number	 00000000h   
 blue . . . . . . . . . . . . . .	Number	 00000001h   
 brown  . . . . . . . . . . . . .	Number	 00000006h   
@@ -505,6 +744,8 @@ lightMagenta . . . . . . . . . .	Number	 0000000Dh
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
 red  . . . . . . . . . . . . . .	Number	 00000004h   
+sec2 . . . . . . . . . . . . . .	DWord	 0000000D _DATA	
+total  . . . . . . . . . . . . .	DWord	 00000009 _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   

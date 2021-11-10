@@ -131,6 +131,13 @@ EscribirTXT MACRO
 	call writestring
 ENDM
 
+LeerTXT MACRO
+	.data
+	.code
+
+	call readstring
+ENDM
+
 EscribirNUM MACRO
 	.data
 	.code
